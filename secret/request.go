@@ -27,7 +27,7 @@ func FromRequest(req *http.Request) string {
 	}
 
 	auth := req.Header.Get("Authorization")
-	return ""
+	return auth
 }
 
 // AddToRequest add the secret to request
