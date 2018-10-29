@@ -17,12 +17,7 @@ package secret
 import (
 	"fmt"
 	"net/http"
-	"strings"
 )
-
-// HeaderPrefix is the prefix of the value of Authorization header.
-// It has the space.
-const HeaderPrefix = "Harbor-Secret "
 
 // FromRequest tries to get Harbor Secret from request header.
 // It will return empty string if the reqeust is nil.
@@ -32,10 +27,6 @@ func FromRequest(req *http.Request) string {
 	}
 
 	auth := req.Header.Get("Authorization")
-	if strings.HasPrefix(auth, HeaderPrefix) {
-		return strings.TrimPrefix(auth, HeaderPrefix)
-	}
-
 	return ""
 }
 
@@ -45,6 +36,6 @@ func AddToRequest(req *http.Request, secret string) error {
 		return fmt.Errorf("input request is nil, unable to set secret")
 	}
 
-	req.Header.Set("Authorization", fmt.Sprintf("%s%s", HeaderPrefix, secret))
+	req.Header.Set("Authorization", secret)
 	return nil
 }

@@ -13,8 +13,7 @@ import (
 )
 
 const (
-	secretPrefix = "Job-Secret-"
-	authHeader   = "Authorization"
+	authHeader = "Authorization"
 )
 
 // Authenticator defined behaviors of doing auth checking.
@@ -38,20 +37,9 @@ func (sa *SecretAuthenticator) DoAuth(req *http.Request) error {
 		return errors.New("nil request")
 	}
 
-	h := strings.TrimSpace(req.Header.Get(authHeader))
-	if utils.IsEmptyStr(h) {
-		return fmt.Errorf("header '%s' missing", authHeader)
-	}
-
-	if !strings.HasPrefix(h, secretPrefix) {
-		return fmt.Errorf("'%s' should start with '%s' but got '%s' now", authHeader, secretPrefix, h)
-	}
-
-	secret := strings.TrimSpace(strings.TrimPrefix(h, secretPrefix))
-
-	// incase both two are empty
+	secret := strings.TrimSpace(req.Header.Get(authHeader))
 	if utils.IsEmptyStr(secret) {
-		return errors.New("empty secret is not allowed")
+		return fmt.Errorf("header '%s' missing", authHeader)
 	}
 
 	expectedSecret := config.GetUIAuthSecret()
