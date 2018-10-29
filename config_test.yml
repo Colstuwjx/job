@@ -1,0 +1,24 @@
+---
+#Protocol used to serve
+protocol: "http"
+
+#Server listening port
+port: 9089
+
+#Worker pool
+worker_pool:
+  #Worker concurrency
+  workers: 10
+  backend: "redis"
+  #Additional config if use 'redis' backend
+  redis_pool:
+    #redis://[arbitrary_username:password@]ipaddress:port/database_index
+    #or ipaddress:port[,weight,password,database_index]
+    redis_url: "127.0.0.1:6379"
+    namespace: "job_service"
+
+#Logger for job
+logger:
+  path: "/tmp/job_logs"
+  level: "INFO"
+  archive_period: 1 #days

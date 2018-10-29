@@ -1,0 +1,30 @@
+hash: d83af0fa7826e4ec16394f831e8d783cb9e0855de6194bcc890cd06296cf2dba
+updated: 2018-10-29T14:38:43.214079+08:00
+imports:
+- name: github.com/gocraft/work
+  version: c85b71e20062f3ab71d4749604faf956d364614f
+- name: github.com/gomodule/redigo
+  version: 9352ab68be133885e31a43661cc42a220cb8e821
+  subpackages:
+  - internal
+  - redis
+- name: github.com/gorilla/mux
+  version: 521ea7b17d02faf8d3afea6737573942ceac59c5
+- name: github.com/robfig/cron
+  version: b41be1df696709bb6395fe435af20370037c0b4c
+- name: gopkg.in/yaml.v2
+  version: 53feefa2559fb8dfa8d81baad31be332c97d6c77
+testImports:
+- name: github.com/davecgh/go-spew
+  version: 782f4967f2dc4564575ca782fe2d04090b5faca8
+  subpackages:
+  - spew
+- name: github.com/pmezard/go-difflib
+  version: 792786c7400a136282c1664665ae0a8db921c6c2
+  subpackages:
+  - difflib
+- name: github.com/stretchr/testify
+  version: 04af85275a5c7ac09d16bb3b9b2e751ed45154e5
+  subpackages:
+  - assert
+  - require
