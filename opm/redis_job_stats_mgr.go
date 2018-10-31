@@ -222,9 +222,10 @@ func (rjs *RedisJobStatsManager) SendCommand(jobID string, command string) error
 		return errors.New("unknown command")
 	}
 
-	if err := rjs.opCommands.Fire(jobID, command); err != nil {
-		return err
-	}
+	// FIXME: why this line caused dead loop and not remove?
+	// if err := rjs.opCommands.Fire(jobID, command); err != nil {
+	// 	return err
+	// }
 
 	// Directly add to op commands maintaining list
 	return rjs.opCommands.Push(jobID, command)
